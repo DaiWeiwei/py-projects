@@ -1,0 +1,5 @@
+1.在grade数据库中，新增字段wrong_answer,varchar类型，wrong_answer记录用户做错题的选项。
+  格式为1,2,2（代表做错三道题，第一道错题选择了第一个，第二道错题选择了第二个，第三道错题选择了第二个）。
+  grade.sql为表结构和数据。
+2.新增表dictionary，字段分别为id，word，chinese。此表用于用户词典翻译，可以自己增加对应的英语单词和汉语的意思
+ dictionary.sql为表结构和数据，只包含测试数据。

@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="zh-cn" >
+<meta charset="utf-8">
+<title>管理员</title>
+<script src="../static/origin/jquery-1.8.3.min.js"></script>
+<link href="../static/origin/boots/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="../static/css/allstyle.css" rel="stylesheet" type="text/css">
+
+<style>
+body{
+	background: url("../static/image/051e0b0bb4ce71b3b82ad1a52d323e09.jpg") no-repeat center;
+	background-size: cover;
+	min-height: 600px;
+}
+
+
+</style>
+<script type="text/javascript">
+	$(function(){
+
+		$.ajax({
+	    	type: 'GET',
+	     	url: "/getUsers" ,
+	    	dataType: "json",
+	    	success: function(data){
+	    				var text="";
+			    		var optipn=""
+			    		console.log(data)
+			    		if(data["result"].length!=0){
+			    			$.each(data["result"],function(i,val){
+			    				
+				    			text+="<tr><td>"+(i+1)+"</td><td>"+val["username"]+"</td><td>"
+				    			
+				    			if(val["type"]==0)
+				    				text+="管理员"
+				    			else if(val["type"]==1)
+				    				text+="学生"
+				    			else text+="教师"
+				    			text+="</td>"
+				    			text+="<td><a target='_blank' href='modifyUser?id="+val["id"]+"'>修改用户</a></td>"
+				    			text+="<td class='delete' id='"+val["id"]+"'>删除用户</td></tr>"
+				    			
+				    		})
+			    		}else{
+			    			text="无人员数据"
+			    		}
+			    		$("#table").append(text);
+			    		$(".delete").click(function(){
+			    			alert($(this).attr("id"))
+			    			$.ajax({
+						    	type: 'POST',
+						     	url: "/delUser" ,
+						     	data:{"id":$(this).attr("id")},
+						    	dataType: "text",
+						    	success: function(data){
+						    		if(data=="success"){
+						    			alert("修改成功")
+						    			
+						    		}
+						    		window.location.reload()
+						    	}
+
+							});
+			    		})
+	    	}
+
+		});
+	})
+
+</script>
+<style type="text/css">
+
+
+
+</style>
+<body>
+<header class="mynav">
+	<div class="container">
+		<div class="myleft">
+			<ul class="nav-ul-1">
+				<li><a href="/home"><span class="glyphicon glyphicon-home"></span></a></li>
+			</ul>
+		</div>
+		<div class="myright">
+			<a href="/register"><button class="btn mybtn"  ><span class="glyphicon glyphicon-plus"></span> 新增用户</button></a>
+		    <a href="/logout" style="float: right;"><button type="button" class="btn  mybtn"><span class="glyphicon glyphicon-log-out"></span> 退出</button></a>
+	    </div>
+	</div>
+
+</header>
+<div class="container" style="margin-top:150px;">
+
+
+	<div id="grade" style="margin-bottom:30px; ">
+
+	</div>
+
+
+	<table id="table" class="table table-bordered ta-hover">
+	<tr>
+		<td>序号</td>
+		<td>用户名</td>
+		<td>类型</td>
+		<td>修改用户</td>
+		<td>删除用户</td>
+	</tr>
+	<!-- {% for result in results %}
+		<tr> 
+			<td>{{result.time}}</td>
+			<td>{{result.type}}</td>
+			<td>{{result.score}}</td>
+	   </tr>
+	{% endfor %} -->
+	</table>
+<!-- <p>{{ results }} </p>
+{% for result in results %}
+    <p>{{ result.question }} </p>
+    <p>{{ result.option }} </p>
+    {% for option in result.option.split(",") %}
+    	<p><input type='radio' name=''>{{ option }} </p>
+    {% endfor %}
+{% endfor %}
+<hr /> -->
+
+</div>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="zh-cn" >
+<meta charset="utf-8">
+<title>修改用户</title>
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css">
+<link href="../static/css/allStyle.css" type="text/css" rel="stylesheet">
+<script src="../static/js/jquery.js"></script>
+<script src="../static/origin/jquery-1.8.3.min.js"></script>
+<link href="../static/origin/boots/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="../static/css/allstyle.css" rel="stylesheet" type="text/css">
+<style>
+	body{
+		background: url("../static/image/051e0b0bb4ce71b3b82ad1a52d323e09.jpg") no-repeat center;
+		background-size: cover;
+		min-height: 600px;
+	}
+    .register form select{
+        margin: 2em 0;
+        width: 10em;
+        border: none;
+        border-radius: 5px;
+        padding: 0.3em 1em;
+        font-size: 0.8em;
+    }
+</style>
+<script type="text/javascript">
+	$(function(){
+		var url= window.location.href;
+		var id=url.substring(url.indexOf('=')+1)
+		$("#userId").val(id)
+		//alert($("#useId").val())
+		if(id!="")
+			$.ajax({
+		    	type: 'POST',
+		     	url: "/getModifyUser" ,
+		     	data:{"id":id},
+		    	dataType: "json",
+		    	success: function(data){
+		    		console.log(data)
+		    		$("#username").val(data["username"]);
+		    		//$("#password").val(data["password"]);
+                    console.log(data["type"]);
+                    var t1 = document.getElementById("typeSelect");
+                    if(data["type"] == 1){
+                        t1.options[0].selected=true;
+                    }
+                    if(data["type"] == 2){
+                        t1.options[1].selected=true;
+                    }
+		    	}
+
+			});
+		$(".save").click(function(){//window.location.href=url
+			$.ajax({
+		    	type: 'POST',
+		     	url: "/modifyUserForm" ,
+		     	data:{"userId":$("#userId").val(),/*"password":$("#password").val(),*/"type":document.getElementById("typeSelect").value},
+		    	dataType: "text",
+		    	success: function(data){
+		    		if(data=="success"){
+		    			alert("修改成功")
+		    			
+		    		}
+		    		window.location.reload()
+		    		/*$("#username").val(data["username"]);
+		    		$("#password").val(data["password"]);*/
+		    	}
+
+			});
+		});
+	})
+</script>
+<body>
+<header class="mynav">
+	<div class="container">
+		<div class="myleft">
+			<ul class="nav-ul-1">
+				<li><a href="home"><span class="glyphicon glyphicon-home"></span></a></li>
+			</ul>
+		</div>
+		<div class="myright">
+			<a href="/logout"><button type="button" class="btn mybtn"><span class="glyphicon glyphicon-off"> 退出</span></button></a>
+		</div>
+	</div>
+</header>
+<div class="container" style="margin-top:50px;">
+<h3 style="text-align: center;">修改用户</h3>
+<div class="register">
+<form class="" name="form" id="form" style="width:700px;margin:auto;">
+	
+    <div class="form-group">
+		<label for="username">用户名</label>
+		<input id="username" name="username" size="80" type="text"  class="form-control">
+
+	</div>
+	<!-- <div class="form-group">
+		<label for="password">密码</label>
+		<input id="password" name="password" size="80" type="text" value="" class="form-control">
+	</div>-->
+
+    <select id="typeSelect" name="type">
+                <option value="1">学生</option>
+                <option value="2">老师</option>
+    </select>
+	<input type="hidden" id="userId" name="userId" size="80" value=""/>
+    <p>
+		<input type="button" value="保存" class="btn  save"/>
+    </p>
+</form>
+    </div>
+</div>
+</body>
+</html>

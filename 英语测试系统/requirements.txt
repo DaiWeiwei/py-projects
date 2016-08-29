@@ -1,0 +1,13 @@
+coverage
+xlrd
+simplejson
+flask
+flask-login
+flask-openid
+flask-mail
+flask-sqlalchemy
+flask-whooshalchemy
+flask-wtf
+sqlalchemy-migrate
+guess-language
+flipflop

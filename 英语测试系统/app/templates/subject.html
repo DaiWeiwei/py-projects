@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="zh-cn" >
+<meta charset="utf-8">
+<title>题目查看</title>
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css">
+<link href="../static/css/allStyle.css" type="text/css" rel="stylesheet">
+<script src="../static/js/jquery.js"></script>
+<script src="../static/origin/jquery-1.8.3.min.js"></script>
+<link href="../static/origin/boots/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="../static/css/allstyle.css" rel="stylesheet" type="text/css">
+<style>
+	body{
+		background: url("../static/image/051e0b0bb4ce71b3b82ad1a52d323e09.jpg") no-repeat center;
+		background-size: cover;
+		min-height: 600px;
+	}
+	.tbtn{
+		border: none;
+		border-radius: 5px;
+	}
+	.tbtn:hover{
+		background: black;
+		color: white;
+		transition: 0.5s all;
+	}
+</style>
+<script type="text/javascript">
+function getSubject(type) {
+	$.ajax({
+	    	type: 'POST',
+	     	url: "/getSubject" ,
+	    	dataType: "json",
+	    	data:{"type":type},
+	    	success: function(data){
+	    		$("#table tbody").empty()
+	    		var text="";
+			    var optipn=""
+			    if(data["result"].length!=0){
+			    	$.each(data["result"],function(i,val){
+				    	text+="<tr><td>"+(i+1)+"</td><td>"+val["question"]+"</td><td>"
+				    		+val["option"]+"</td><td>"+val["answer"]+"</td><td>"+val["level"]
+				    		+"</td>"
+				    	if(type=="phrase")	
+				    		text+="<td>"+val["kind"]+"</td><td>"+val["classify"]+"</td>"
+				    	text+="<td class='delete' id='"+val["id"]+"'>删除题目</td><td><a href='modify?id="
+				    		+val["id"]+"&&type="+type+"' >修改题目</a></td>"
+				    	text+="</tr>"
+				    })
+			    }else{
+			    	text="无题目"
+			    }
+			    $("#table tbody").append(text)
+			    $(".delete").on("click",function(){
+			    	var that=$(this)
+					var id=$(this).attr("id")
+					$.ajax({
+				    	type: 'POST',
+				     	url: "/delSubject" ,
+				    	dataType: "text",
+				    	data:{"id":id,"type":type},
+				    	success: function(data){
+				    		console.log(data)
+				    		if(data=="success"){
+				    			that.closest("tr").remove();
+				    			alert("删除题目成功")
+				    		}
+				    	}
+					});
+				})
+	    	}
+
+		});
+}
+	$(function(){
+		var type="word";
+		$(".classify").hide()
+		$(".type").change(function(){
+			type=$(this).val()
+			$(".classify").hide()
+			if(type=="phrase")
+				$(".classify").show()
+			getSubject(type)
+		});
+		getSubject(type)
+		
+	})
+
+</script>
+<style>
+	
+	.delete{
+		color: blue;
+		cursor: pointer;
+		text-decoration : underline;
+	}
+</style>
+<body>
+<nav class="mynav">
+  <div class="container-fluid container">
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="myleft" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+		  <li><a href="home"><span class="glyphicon glyphicon-home"></span></a></li>
+       		<li><a href="teacher" target="_self">学生成绩</a></li>
+			<li class="active"><a href="subject" target="_self">查看题目</a></li>
+            <li><a href="fileinput" target="_self">文件上传</a></li>
+			<!-- <li><a href="phrase" target="_blank">短语测试</a></li> -->
+      </ul>
+    </div>
+	  <div class="myright">
+		  <a href="/logout"><button type="button" class="btn mybtn"><span class="glyphicon glyphicon-off"> 退出</span></button></a>
+
+	  </div>
+  </div>
+</nav>
+<div class="container" style="margin-top:50px;">
+	<a href="modify?id=&&type=word"><button class="btn">新增单词测试</button></a>
+	<a href="modify?id=&&type=phrase"><button class="btn">新增短语测试</button></a>
+	<a href="modify?id=&&type=confuse"><button class="btn">新增易混词辨析</button></a>
+	<div id="grade">
+		<select class="type form-control" style="width:200px;margin :15px 0;">
+			<option value="word">查看单词测试题目</option>
+			<option value="phrase">查看短语测试题目</option>
+			<option value="confuse">查看易混词辨析题目</option>
+		</select>
+
+	</div>
+	<table id="table"  class="table table-bordered table-hover">
+		<thead>
+			<tr>
+				<td>序号</td>
+				<td>题目</td>
+				<td>选项</td>
+				<td>答案</td>
+				<td>等级</td>
+				<td class="classify">类型</td>
+				<td class="classify">考试分类</td>
+				<td>删除</td>
+				<td>修改</td>
+			</tr>
+		</thead>
+		<tbody></tbody>
+	</table>
+<!-- <p>{{ results }} </p>
+{% for result in results %}
+    <p>{{ result.question }} </p>
+    <p>{{ result.option }} </p>
+    {% for option in result.option.split(",") %}
+    	<p><input type='radio' name=''>{{ option }} </p>
+    {% endfor %}
+{% endfor %}
+<hr /> -->
+</div>
+
+</body>
+</html>

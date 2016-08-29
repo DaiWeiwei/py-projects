@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="zh-cn" >
+<meta charset="utf-8">
+<title>测试</title>
+<script src="../static/js/jquery.js"></script>
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css">
+<link href="../static/css/allStyle.css" type="text/css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../static/css/main.css">
+<script src="../static/origin/jquery-1.8.3.min.js"></script>
+<link href="../static/origin/boots/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="../static/css/allstyle.css" rel="stylesheet" type="text/css">
+<style>
+	body{
+		background: url("../static/image/051e0b0bb4ce71b3b82ad1a52d323e09.jpg") no-repeat center;
+		background-size: cover;
+		min-height: 600px;
+	}
+</style>
+<style type="text/css">
+	*{
+		padding: 0;
+		margin: 0;
+	}
+
+	p span{
+		margin-right:15px; 
+	}
+</style>
+<script type="text/javascript">
+var count1;
+function submitForm(){
+	var id=[];
+	var answer=[];
+	var id2=[];
+	var answer2=[];
+	var id3=[];
+	var answer3=[];
+	var count=0;
+	$("#wordQuize").find("div").each(function(argument) {
+        if($(this).context.className=='wid') {
+            id.push($(this).find("input").attr("name").substring(8));
+            var checked=$(this).find("input:checked");
+            answer.push(checked.index()+1);
+        }
+        if($(this).context.className=='pid') {
+            id2.push($(this).find("input").attr("name").substring(8));
+            var checked=$(this).find("input:checked");
+            answer2.push(checked.index()+1);
+        }
+        if($(this).context.className=='cid') {
+            id3.push($(this).find("input").attr("name").substring(8));
+            var checked=$(this).find("input:checked");
+            answer3.push(checked.index()+1);
+        }
+{#        }#}
+{#            var checked = $(this).find("input:checked");#}
+{#            if (count < count1) {#}
+{#                id.push($(this).find("input").attr("name").substring(8))#}
+{#                answer.push(checked.index() + 1)#}
+{#            } else {#}
+{#                id2.push($(this).find("input").attr("name").substring(8))#}
+{#                answer2.push(checked.index() + 1)#}
+{#            }#}
+{#            count++;#}
+{#        }#}
+	});
+
+		$.ajax({
+	    	type: 'POST',
+	     	url: "/saveTest" ,
+	     	data:{"id":id.join(","),"answer":answer.join(","),"id2":id2.join(","),"answer2":answer2.join(","),"id3":id3.join(","),"answer3":answer3.join(",")},
+	    	dataType: "text",
+	    	success: function(data){
+	    		console.log(data);
+	    		window.location.href="myGrade"
+	    	}
+
+		});
+}
+
+	$(function(){
+		var SysSecond=7200; 
+ 		var InterValObj;
+		function SetRemainTime() { 
+			if (SysSecond > 0) { 
+		    	SysSecond = SysSecond - 1; 
+			    var second = Math.floor(SysSecond % 60);             // 计算秒     
+			    var minite = Math.floor((SysSecond / 60) % 60);      //计算分 
+			    var hour = Math.floor((SysSecond / 3600) % 24);      //计算小时 
+			    var day = Math.floor((SysSecond / 3600) / 24);        //计算天 
+		 
+		   		$("#remainTime").html(hour + "小时" + minite + "分" + second + "秒"); 
+		    } else{//剩余时间小于或等于0的时候，就停止间隔函数 
+		   		window.clearInterval(InterValObj); 
+		    	submitForm();
+			} 
+		}
+		
+		SetRemainTime()
+  		InterValObj = window.setInterval(SetRemainTime, 1000); //间隔函数，1秒执行 
+		$.ajax({
+	    	type: 'GET',
+	     	url: "/getTest" ,
+	    	dataType: "json",
+	    	success: function(data){
+	    		//console.log(data["result"][0])
+	    		var text="";
+	    		var optipn=""
+	    		$.each(data["result"],function(i,val){
+	    			text+="<div class='wid' id='w"+val["id"]+"'>"
+	    			text+="<p class='question'>"+(i+1)+"."+val["question"]+"</p><div class='row'>";
+	    			option=val["option"].split(",");
+	    			$.each(option,function(j,val2){
+		    				text+="<div class='col-sm-3'><input type='radio' name='wuestion"+val["id"]+"'>"+val2+"</div>"
+		    		});
+	    			text+="</div></div>"
+	    		});
+	    		$.each(data["result2"],function(i,val){
+	    			text+="<div class='pid' id='p"+val["id"]+"'>"
+	    			text+="<p  class='question'>"+(i+1)+"."+val["question"]+"</p><div class='row'>";
+	    			option=val["option"].split(",");
+	    			$.each(option,function(j,val2){
+		    				text+="<div class='col-sm-3'><input type='radio' name='question"+val["id"]+"'>"+val2+"</div>"
+		    		});
+	    			text+="</div></div>"
+
+	    		});
+                $.each(data["result3"],function(i,val){
+	    			text+="<div class='cid' id='c"+val["id"]+"'>"
+	    			text+="<p  class='question'>"+(i+1)+"."+val["question"]+"</p><div class='row'>";
+	    			option=val["option"].split(",");
+	    			$.each(option,function(j,val2){
+		    				text+="<div class='col-sm-3'><input type='radio' name='cuestion"+val["id"]+"'>"+val2+"</div>"
+		    		});
+	    			text+="</div></div>"
+
+	    		});
+	    		count1=data["result"].length;
+	    		count2=data["result2"].length;
+	    		$("#wordQuize").append(text)
+	    	}
+
+		});
+	})
+</script>
+<body>
+
+<!-- <p>{{ results }} </p>
+{% for result in results %}
+    <p>{{ result.question }} </p>
+    <p>{{ result.option }} </p>
+    {% for option in result.option.split(",") %}
+    	<p><input type='radio' name=''>{{ option }} </p>
+    {% endfor %}
+{% endfor %}
+<hr /> -->
+<header class="mynav">
+	<div class="container">
+		<div class="myleft">
+			<ul class="nav-ul-1">
+				<li><a href="home"><span class="glyphicon glyphicon-home"></span></a></li>
+			</ul>
+		</div>
+
+		<div class="myright">
+			<button onclick="submitForm()" class="btn mybtn"><span class="glyphicon glyphicon-send"> 提交</span></button>
+            <a href="/logout"><button type="button" class="btn mybtn"><span class="glyphicon glyphicon-off"> 退出</span></button></a>
+		</div>
+	</div>
+</header>
+<div class="container">
+	<h3 style="text-align: center;">摸底测试</h3>
+	<div id="remainTime" style="font-size:20px;font-weight:800;color:#FF9900;margin-bottom: 15px;text-align: center;"></div>
+	<form name="wordQuize" id="wordQuize">
+		
+	</form>
+
+</div>
+</body>
+</html>

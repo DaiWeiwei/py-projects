@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="zh-cn" >
+<meta charset="utf-8">
+<title>错题记录</title>
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="../static/css/main.css">
+<link href="../static/css/allStyle.css" type="text/css" rel="stylesheet">
+<script src="../static/js/jquery.js"></script>
+<script src="../static/origin/jquery-1.8.3.min.js"></script>
+<link href="../static/origin/boots/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="../static/css/allstyle.css" rel="stylesheet" type="text/css">
+<style>
+	body{
+		background: url("../static/image/051e0b0bb4ce71b3b82ad1a52d323e09.jpg") no-repeat center;
+		background-size: cover;
+		min-height: 600px;
+	}
+</style>
+<script type="text/javascript">
+	$(function(){
+		var url= window.location.href;
+		var id = url.substring(url.lastIndexOf('=') + 1);
+		$.ajax({
+	    	type: 'POST',
+	     	url: "/getProblem" ,
+	     	data:{"id":id},
+	    	dataType: "json",
+	    	success: function(data){
+	    		var text="";
+			    		var optipn=""
+			    		console.log(data["result"])
+			    		if(data["result"].length!=0){
+			    			$.each(data["result"],function(i,val){
+				    			text+="<div id='"+val["id"]+"'>"
+				    			text+="<p class='question'>"+(i+1)+"."+val["question"]+"</p><div class='row'>";
+				    			option=val["option"].split(",");
+				    			$.each(option,function(j,val2){
+				    				text+="<div class='col-sm-3'"
+				    				if(val["wrongAnswer"]-1==j)
+				    					text+=" style='color:red'"
+				    				text+="><input type='radio' name='question"+val["id"]+"' "
+				    				if(j+1==val["answer"])
+				    					text+="checked='checked'"
+				    				text+=">"+val2+"</div>"
+				    			})
+				    			text+="</div></div>"
+				    			
+				    		})
+			    		}else{
+			    			text="无错题"
+			    		}
+			    					    		
+			    		$("#wordQuize").append(text)
+	    	}
+
+		});
+	})
+</script>
+<style type="text/css">
+	p span{
+		margin-right:25px; 
+	}
+</style>
+<body>
+<nav class="mynav">
+  <div class="container-fluid container">
+
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="myleft" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+		  <li><a href="home"><span class="glyphicon glyphicon-home"></span></a></li>
+        <li class="active"><a href="myGrade" target="_self">我的成绩</a></li>
+		<li><a href="main" target="_self">单词测试</a></li>
+		<li><a href="phrase" target="_self">短语测试</a></li>
+		  <li><a href="confuse" target="_self">易混词辨析</a></li>
+      </ul>
+    </div>
+	  <div class="myright">
+		  <a href="/logout"><button type="button" class="btn mybtn"><span class="glyphicon glyphicon-off"> 退出</span></button></a>
+	  </div>
+  </div>
+</nav>
+<div class="container" style="margin-top:50px;">
+	<h3 style="text-align: center;">错题记录</h3>
+	<div id="grade" style="font-size:20px;font-weight:800;color:#FF9900"></div>
+	<div id="wordQuize">
+	
+	</div>
+
+</div>
+<!-- <p>{{ results }} </p>
+{% for result in results %}
+    <p>{{ result.question }} </p>
+    <p>{{ result.option }} </p>
+    {% for option in result.option.split(",") %}
+    	<p><input type='radio' name=''>{{ option }} </p>
+    {% endfor %}
+{% endfor %}
+<hr /> -->
+
+
+</body>
+</html>
