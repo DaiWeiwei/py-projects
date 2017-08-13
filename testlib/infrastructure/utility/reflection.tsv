@@ -1,0 +1,7 @@
+*Settings*							
+Library	Reflection.py						
+							
+*Keywords*							
+执行对象方法	[Arguments]	${obj}	${methodName}	@{args}			
+	${res} =	invoke	${obj}	${methodName}	@{args}		
+	[Return]	${res}					
