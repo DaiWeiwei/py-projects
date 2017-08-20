@@ -1,3 +1,5 @@
+import sys
+print (sys.path)
 from flask import Flask
 
 app = Flask(__name__)
