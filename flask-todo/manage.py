@@ -1,5 +1,6 @@
 from flask_script import Manager, Server
 from app import  app
+from app.models import Todo
 
 manager = Manager(app)
 
