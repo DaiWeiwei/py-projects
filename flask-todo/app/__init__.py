@@ -7,7 +7,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config.from_object("config")
-app.config('SQLALCHEMY_DATABASE_URI') = 'mysql://root:root@localhost:3306/f_db'
+app.config('SQLALCHEMY_DATABASE_URI') = 'mysql+pymysql://root:root@localhost:3306/f_db'
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True 
 
 db = SQLAlchemy(app)
