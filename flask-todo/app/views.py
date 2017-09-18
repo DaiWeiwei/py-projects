@@ -1,5 +1,6 @@
 from app import app
 from flask import render_template,request
+from models import Todo
 
 @app.route('/')
 def index():
@@ -11,6 +12,9 @@ def index():
 def add():
     content = request.form.get("content")
     todo = Todo(content=content)
+    todo.save()
+    todos = Todo.objects.all()
+    return  render_template("index.html", todo=todos)
 
 @app.errorhandler(404)
 def not_found(e):
