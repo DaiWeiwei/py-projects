@@ -2,11 +2,13 @@ from PIL import Image
 import os
 
 ascii_char = list(r"$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,\"^`'. ")
-pic = os.path.join(os.path.dirname(__file__), 'jobs.jpeg')
-text = os.path.join(os.path.dirname(__file__), 'jobs.txt')
+pic = 'jobs.jpeg'
+# print(pic)
+text = 'jobs.txt'
+# print(text)
 
 def get_char(r,g,b,alpha = 256):
-	if alpha == 256:
+	if alpha == 0:
 		return ' '
 
 	length = len(ascii_char)
@@ -24,7 +26,9 @@ if __name__ == '__main__':
 
 	for i in range(80):
 		for j in range(80):
-			txt += get_char(*im.getpixel((j,i)))
+			_char = get_char(*im.getpixel((j,i)))
+			# print('char:', _char)
+			txt += _char
 			txt += '\n'
 
 	print(txt)
