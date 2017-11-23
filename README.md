@@ -1,1 +1,1 @@
-一些python小项目，大神们轻喷。
+Some python projects.
