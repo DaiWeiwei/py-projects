@@ -13,10 +13,24 @@
                 <span class="icon-bar"></span>
               </span>
             </button>
+            <a class="navbar-brand" href="/">Flasky</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav nav navbar-nav">
+                <li><a href="/">Home</a></li>
+            </ul>
         </div>
 
     </div>
 
+</div>
+{% end block %}
+
+{% block content %}
+<div class="container">
+    <div class="page-header">
+        <h1>Hello, {{name}}!</h1>
+    </div>
 </div>
 {% end block %}
 
