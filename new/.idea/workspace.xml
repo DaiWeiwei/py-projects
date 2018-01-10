@@ -27,17 +27,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="manage.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="manage.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/manage.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="542">
-              <caret line="25" column="14" lean-forward="false" selection-start-line="25" selection-start-column="14" selection-end-line="25" selection-end-column="14" />
+            <state relative-caret-position="626">
+              <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
-                <marker date="1515600971000" expanded="true" signature="286:330" ph="create table... user" />
-                <marker date="1515600971000" expanded="true" signature="399:417" ph="select * fro... user" />
-                <marker date="1515600971000" expanded="true" signature="429:467" ph="insert into user... " />
-                <marker date="1515600971000" expanded="true" signature="429:475" ph="insert into user... " />
+                <marker date="1515602330000" expanded="true" signature="308:352" ph="create table... user" />
+                <marker date="1515602330000" expanded="true" signature="421:439" ph="select * fro... user" />
+                <marker date="1515602330000" expanded="true" signature="451:489" ph="insert into user... " />
+                <marker date="1515602330000" expanded="true" signature="451:497" ph="insert into user... " />
               </folding>
             </state>
           </provider>
@@ -55,12 +55,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="model.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="model.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="154">
+              <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+              <folding>
+                <marker date="1515602640000" expanded="true" signature="173:203" ph="insert into user... " />
+                <marker date="1515602640000" expanded="true" signature="173:211" ph="insert into user... " />
+                <marker date="1515602640000" expanded="true" signature="388:406" ph="select * fro... user" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -88,11 +92,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/model.py" />
         <option value="$PROJECT_DIR$/view.py" />
         <option value="$PROJECT_DIR$/templates/user.html" />
         <option value="$PROJECT_DIR$/app.py" />
         <option value="$PROJECT_DIR$/manage.py" />
+        <option value="$PROJECT_DIR$/model.py" />
       </list>
     </option>
   </component>
@@ -281,7 +285,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1515602640000" expanded="true" signature="173:203" ph="insert into user... " />
+            <marker date="1515602640000" expanded="true" signature="173:211" ph="insert into user... " />
+            <marker date="1515602640000" expanded="true" signature="388:406" ph="select * fro... user" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -307,7 +315,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1515602640000" expanded="true" signature="173:203" ph="insert into user... " />
+            <marker date="1515602640000" expanded="true" signature="173:211" ph="insert into user... " />
+            <marker date="1515602640000" expanded="true" signature="388:406" ph="select * fro... user" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -325,7 +337,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1515602640000" expanded="true" signature="173:203" ph="insert into user... " />
+            <marker date="1515602640000" expanded="true" signature="173:211" ph="insert into user... " />
+            <marker date="1515602640000" expanded="true" signature="388:406" ph="select * fro... user" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -343,32 +359,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/view.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/user.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="30" lean-forward="false" selection-start-line="0" selection-start-column="30" selection-end-line="0" selection-end-column="30" />
           <folding>
-            <element signature="n#style#0;n#textarea#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1515602640000" expanded="true" signature="173:203" ph="insert into user... " />
+            <marker date="1515602640000" expanded="true" signature="173:211" ph="insert into user... " />
+            <marker date="1515602640000" expanded="true" signature="388:406" ph="select * fro... user" />
           </folding>
         </state>
       </provider>
@@ -383,16 +377,46 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/view.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/manage.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="542">
-          <caret line="25" column="14" lean-forward="false" selection-start-line="25" selection-start-column="14" selection-end-line="25" selection-end-column="14" />
+        <state relative-caret-position="626">
+          <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
-            <marker date="1515600971000" expanded="true" signature="286:330" ph="create table... user" />
-            <marker date="1515600971000" expanded="true" signature="399:417" ph="select * fro... user" />
-            <marker date="1515600971000" expanded="true" signature="429:467" ph="insert into user... " />
-            <marker date="1515600971000" expanded="true" signature="429:475" ph="insert into user... " />
+            <marker date="1515602330000" expanded="true" signature="308:352" ph="create table... user" />
+            <marker date="1515602330000" expanded="true" signature="421:439" ph="select * fro... user" />
+            <marker date="1515602330000" expanded="true" signature="451:489" ph="insert into user... " />
+            <marker date="1515602330000" expanded="true" signature="451:497" ph="insert into user... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/user.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="30" lean-forward="false" selection-start-line="0" selection-start-column="30" selection-end-line="0" selection-end-column="30" />
+          <folding>
+            <element signature="n#style#0;n#textarea#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding>
+            <marker date="1515602640000" expanded="true" signature="173:203" ph="insert into user... " />
+            <marker date="1515602640000" expanded="true" signature="173:211" ph="insert into user... " />
+            <marker date="1515602640000" expanded="true" signature="388:406" ph="select * fro... user" />
           </folding>
         </state>
       </provider>

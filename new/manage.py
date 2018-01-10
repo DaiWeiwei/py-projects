@@ -1,7 +1,7 @@
 from flask_script import Manager
 from app import app
 import sqlite3
-
+from model import User
 
 manager = Manager(app)
 
@@ -21,12 +21,25 @@ def init_db():
 	cursor = conn.cursor()
 	sql = 'select * from user'
 	# sql = "insert into user (id, name) VALUES (1, 'tony')"
-	cursor.execute(sql)
-	ret = cursor.fetchall()
-	print(ret)
+	rets = cursor.execute(sql)
+	# ret = cursor.fetchall()
+	for ret in rets:
+		print(ret)
 	# conn.commit()
 	cursor.close()
 	conn.close()
+
+@manager.command
+def save():
+	user = User(2, 'pony')
+	user.save()
+
+@manager.command
+def query_all():
+	users = User.query()
+	for user in users:
+		print(user)
+
 
 
 
