@@ -14,6 +14,21 @@ def ho():
 def he(msg_val):
 	print("000" + msg_val)
 
+@manager.command
+def init_db():
+	# sql = 'create table user (id INT, name VARCHAR(10))'
+	conn = sqlite3.connect('test.db')
+	cursor = conn.cursor()
+	sql = 'select * from user'
+	# sql = "insert into user (id, name) VALUES (1, 'tony')"
+	cursor.execute(sql)
+	ret = cursor.fetchall()
+	print(ret)
+	# conn.commit()
+	cursor.close()
+	conn.close()
+
+
 
 
 if __name__ == '__main__':
