@@ -10,6 +10,10 @@ manager = Manager(app)
 def ho():
 	print("......")
 
+@manager.option('-m', '--m', dest='msg_val', default='world')
+def he(msg_val):
+	print("000" + msg_val)
+
 
 
 if __name__ == '__main__':
