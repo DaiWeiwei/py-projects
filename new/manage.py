@@ -39,7 +39,7 @@ def save():
 
 @manager.command
 def query_all():
-	users = User.query_all()
+	users = User.query.all()
 	for user in users:
 		print(user)
 
