@@ -1,5 +1,5 @@
 from flask_script import Manager
-from app import app
+from app import app, db
 import sqlite3
 from model import User
 
@@ -31,12 +31,15 @@ def init_db():
 
 @manager.command
 def save():
-	user = User(2, 'tony')
-	user.save()
+	user = User(4, 'bony')
+	# user.save()
+	db.session.add(user)
+	db.session.commit()
+
 
 @manager.command
 def query_all():
-	users = User.query()
+	users = User.query_all()
 	for user in users:
 		print(user)
 
