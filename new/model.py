@@ -1,19 +1,31 @@
-import sqlite3
+# import sqlite3
+import pymysql
 
 def get_conn():
-	return sqlite3.connect("test.db")
-
+	# return sqlite3.connect("test.db")
+	host = '127.0.0.1'
+	port = 3306
+	db = 'f_db'
+	user = 'root'
+	pwd = 'root'
+	conn = pymysql.connect(host=host,
+	                       user=user,
+	                       password=pwd,
+	                       db=db,
+	                       port=port,
+	                       charset='utf8')
+	return conn
 
 class User:
-	def __init__(self, id, name):
-		self.id = id
-		self.name = name
+	def __init__(self, user_id, user_name):
+		self.user_id = user_id
+		self.user_name = user_name
 
 	def save(self):
-		sql = "insert into user VALUES (?, ?)"   ####
+		sql = "insert into user VALUES (%s, %r)"   ####
 		conn = get_conn()
 		cursor = conn.cursor()
-		cursor.execute(sql, (self.id, self.name))
+		cursor.execute(sql, (self.user_id, self.user_name))
 		conn.commit()
 		cursor.close()
 		conn.close()
@@ -23,7 +35,8 @@ class User:
 		sql = 'select * from user'
 		conn = get_conn()
 		cursor = conn.cursor()
-		rows = cursor.execute(sql)
+		cursor.execute(sql)
+		rows = cursor.fetchall()
 		users = []
 		for row in rows:
 			user = User(row[0], row[1])
@@ -34,6 +47,6 @@ class User:
 		return users
 
 	def __str__(self):
-		return 'id:{}--name:{}'.format(self.id, self.name)
+		return 'id:{}--name:{}'.format(self.user_id, self.user_name)
 
 

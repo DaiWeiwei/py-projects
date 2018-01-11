@@ -31,7 +31,7 @@ def init_db():
 
 @manager.command
 def save():
-	user = User(2, 'pony')
+	user = User(2, 'tony')
 	user.save()
 
 @manager.command
