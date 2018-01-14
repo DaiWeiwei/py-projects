@@ -1,5 +1,12 @@
-CREATE  TABLE `user` (
-  `user_id` INT NOT NULL ,
-  `user_name` VARCHAR(20) NULL ,
-  PRIMARY KEY (`user_id`)
-);
+-- msyql notes
+
+CREATE [TEMPORARY] TABLE [IF NOT EXISTS ] 数据表名
+[(create_definition...)][table_option][select_statement]
+
+create_definition:
+  col_name
+  type
+  not null | null
+  DEFAULT default_value
+  auto_increament
+  PRIMARY KEY
