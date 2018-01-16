@@ -34,5 +34,9 @@ DROP TABLE if exists  表名
 
 INSERT INTO table(col1,col2) VALUES (val1, val2)
 
+UPDATE table set col=new_value1 where ...UPDATE
+
+DELETE  FROM table where ...FROM
+
 
 
