@@ -38,5 +38,9 @@ UPDATE table set col=new_value1 where ...UPDATE
 
 DELETE  FROM table where ...FROM
 
+SELECT .. FROM table1 LEFT|RIGHT join table2 on table1.val = table2.val
+
+
+
 
 
