@@ -41,6 +41,18 @@ DELETE  FROM table where ...FROM
 SELECT .. FROM table1 LEFT|RIGHT join table2 on table1.val = table2.val
 
 
+-- show tables;
+-- CREATE  TABLE `user` (
+--   `user_id` INT NOT NULL ,
+--   `user_name` VARCHAR(20) NULL ,
+--   PRIMARY KEY (`user_id`));
+-- select id,sex,name from user group by sex,name;
+-- desc user
+-- alter table user change user_id id int, change user_name name varchar(20);
+-- alter table user modify sex varchar(10) not null default 'male';
+-- update user set sex='female' where name='bony'
+
+
 
 
 
