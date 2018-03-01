@@ -4,8 +4,11 @@
     <br>
     <h4 align="center">Please input a integer(0~1000).</h2>
     <div style="text-align:center">
-        <form>
-            <input type="text" name="Input 0~1000:" />
+        <form action="/guess" method="post">
+            {% if form%}
+                {{ form.csrf_token }}
+            {% endif %}
+            <input type="text" name="text" />
             <br>
             <input type="submit" value="submit" />
         </form>

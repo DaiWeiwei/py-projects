@@ -5,7 +5,7 @@ import random
 from flask import Flask, render_template, flash, redirect, url_for, session
 from flask_wtf import FlaskForm
 from wtforms import IntegerField, SubmitField
-from wtforms.validators import Required, NumberRange
+from wtforms.validators import DataRequired, NumberRange
 # from flask_sqlalchemy import SQLAlchemy
 # from flask_bootstrap import Bootstrap
 
@@ -20,7 +20,7 @@ app.config['SECRET_KEY'] = 'its hard to guess'
 
 class GuessNumberForm(FlaskForm):
  	number = IntegerField("Input 0~1000:", validators=[
- 		Required("Input a valid integer!"),
+ 		DataRequired("Input a valid integer!"),
  		NumberRange(0, 1000, 'Number range is 0~1000!')])
  	submit = SubmitField("submit")
 
@@ -28,10 +28,10 @@ class GuessNumberForm(FlaskForm):
 def index():
 	# 生成一个0~1000的随机数，存储到session变量里。
 	session["number"] = random.randint(0,1000)
-	session['time'] = 10
+	session['times'] = 10
 	return render_template('index.html')
 
-@app.route("/guess", methods=["GET", "POST"])
+@app.route("/guess", methods=["POST"])
 def guess():
 	times = session.get("times")
 	result = session.get("number")
@@ -52,7 +52,13 @@ def guess():
 			return redirect(url_for("index"))
 		return render_template('guess.html', form=form)
 
+@app.route("/guess", methods=["GET"])
+def _guess():
+	return render_template('guess.html', form=None)
+
  
 
 if __name__ == '__main__':
 	app.run()
+
+
