@@ -19,7 +19,7 @@ app.config['SECRET_KEY'] = 'its hard to guess'
 # db = SQLAlchemy(app)
 
 class GuessNumberForm(FlaskForm):
- 	number = IntegerField("Input 0~1000:", validators=[
+ 	number = IntegerField("text", validators=[
  		DataRequired("Input a valid integer!"),
  		NumberRange(0, 1000, 'Number range is 0~1000!')])
  	submit = SubmitField("submit")
@@ -31,7 +31,7 @@ def index():
 	session['times'] = 10
 	return render_template('index.html')
 
-@app.route("/guess", methods=["POST"])
+@app.route("/guess", methods=["GET", "POST"])
 def guess():
 	times = session.get("times")
 	result = session.get("number")
@@ -43,6 +43,7 @@ def guess():
 			flash("you lose")
 			return redirect(url_for("index"))
 		answer = form.number.data
+		print(answer,result)
 		if answer>result:
 			flash(f"{answer} is too large,left {times} times")
 		elif answer<result:
@@ -50,15 +51,17 @@ def guess():
 		else:
 			flash("you win")
 			return redirect(url_for("index"))
-		return render_template('guess.html', form=form)
+		return redirect(url_for('guess'))
+	print(11111111)
+	return render_template('guess.html', form=form)
 
-@app.route("/guess", methods=["GET"])
-def _guess():
-	return render_template('guess.html', form=None)
+# @app.route("/guess", methods=["GET"])
+# def _guess():
+# 	return render_template('guess.html', form=None)
 
  
 
 if __name__ == '__main__':
-	app.run()
+	app.run(debug=True)
 
 
