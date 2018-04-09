@@ -6,6 +6,17 @@
 <body>
     <br>
     <h2 align="center">GUESS</h2>
+    <div style="text-align:center">
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+                <p class=flashes>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </p>
+            {% endif %}
+        {% endwith %}
+    </div>
     {% block content %}
     {% endblock %}
     <!-- <form>

@@ -1,16 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <br>
     <h4 align="center">Please input a integer(0~1000).</h2>
     <div style="text-align:center">
         <form action="/guess" method="post">
-            {% if form%}
-                {{ form.csrf_token }}
-            {% endif %}
-            <input type="text" name="text" />
+            {{form.number}}
+            {{form.submit}}
+            {{ form.csrf_token }}
+            <!-- <input type="text" name="text" />
             <br>
-            <input type="submit" value="submit" />
+            <input type="submit" value="submit" /> -->
         </form>
     </div>
 {% endblock%}
