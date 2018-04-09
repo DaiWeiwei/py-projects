@@ -43,7 +43,8 @@ def guess():
 			flash("you lose")
 			return redirect(url_for("index"))
 		answer = form.number.data
-		print(answer,result)
+		# flash("****************")
+		print(answer,result,times)
 		if answer>result:
 			flash(f"{answer} is too large,left {times} times")
 		elif answer<result:
@@ -52,7 +53,6 @@ def guess():
 			flash("you win")
 			return redirect(url_for("index"))
 		return redirect(url_for('guess'))
-	print(11111111)
 	return render_template('guess.html', form=form)
 
 # @app.route("/guess", methods=["GET"])
