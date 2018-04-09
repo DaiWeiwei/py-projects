@@ -5,7 +5,7 @@ import random
 from flask import Flask, render_template, flash, redirect, url_for, session
 from flask_wtf import FlaskForm
 from wtforms import IntegerField, SubmitField
-from wtforms.validators import DataRequired, NumberRange
+from wtforms.validators import DataRequired, NumberRange, InputRequired
 # from flask_sqlalchemy import SQLAlchemy
 # from flask_bootstrap import Bootstrap
 
@@ -19,8 +19,8 @@ app.config['SECRET_KEY'] = 'its hard to guess'
 # db = SQLAlchemy(app)
 
 class GuessNumberForm(FlaskForm):
- 	number = IntegerField("text", validators=[
- 		DataRequired("Input a valid integer!"),
+ 	number = IntegerField("answer", validators=[
+	    DataRequired('it is required'),
  		NumberRange(0, 1000, 'Number range is 0~1000!')])
  	submit = SubmitField("submit")
 
@@ -37,22 +37,23 @@ def guess():
 	result = session.get("number")
 	form = GuessNumberForm()
 	if form.validate_on_submit():
-		times -= 1
-		session['times'] = times
-		if times == 0:
-			flash("you lose")
-			return redirect(url_for("index"))
 		answer = form.number.data
 		# flash("****************")
 		print(answer,result,times)
-		if answer>result:
-			flash(f"{answer} is too large,left {times} times")
-		elif answer<result:
-			flash(f"{answer} is too small,left {times} times")
-		else:
+		times -= 1
+		session['times'] = times
+		if answer == result:
 			flash("you win")
 			return redirect(url_for("index"))
-		return redirect(url_for('guess'))
+		else:
+			if times == 0:
+				flash("you lose")
+				return redirect(url_for("index"))
+			if answer>result:
+				flash(f"{answer} is too large,left {times} times")
+			elif answer<result:
+				flash(f"{answer} is too small,left {times} times")
+			return redirect(url_for('guess'))
 	return render_template('guess.html', form=form)
 
 # @app.route("/guess", methods=["GET"])
