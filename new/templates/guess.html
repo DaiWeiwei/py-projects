@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h4 align="center">Please input a integer(0~1000).</h2>
+    <h4 align="center">Please input a integer(0~1000).</h4>
     <div style="text-align:center">
         <form action="/guess" method="post">
-            {{form.number}}
+            {{form.number(class="input_class",required=form.number.flags.required)}}
             {{form.submit}}
             {{ form.csrf_token }}
             <!-- <input type="text" name="text" />
