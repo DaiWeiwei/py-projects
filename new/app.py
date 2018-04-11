@@ -20,7 +20,7 @@ app.config['SECRET_KEY'] = 'its hard to guess'
 
 class GuessNumberForm(FlaskForm):
  	number = IntegerField("answer", validators=[
-	    DataRequired('it is required'),
+	    InputRequired('it is required'),
  		NumberRange(0, 1000, 'Number range is 0~1000!')])
  	submit = SubmitField("submit")
 
