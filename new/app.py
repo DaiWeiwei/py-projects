@@ -7,14 +7,14 @@ from flask_wtf import FlaskForm
 from wtforms import IntegerField, SubmitField
 from wtforms.validators import DataRequired, NumberRange, InputRequired
 # from flask_sqlalchemy import SQLAlchemy
-# from flask_bootstrap import Bootstrap
+from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'its hard to guess'
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:root@localhost:3306/f_db'
 # app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 # app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
-# bootstrap = Bootstrap(app)
+bootstrap = Bootstrap(app)
 
 # db = SQLAlchemy(app)
 
