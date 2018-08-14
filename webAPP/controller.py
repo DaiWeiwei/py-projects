@@ -11,7 +11,7 @@ class Book:
         return result
 
     @classmethod
-    def serach_by_keyword(cls, keyword, count=15, start=0):
+    def search_by_keyword(cls, keyword, count=15, start=0):
         url = cls.keyword_url.format(keyword, count, start)
         result = HTTP.get(url)
         return result
