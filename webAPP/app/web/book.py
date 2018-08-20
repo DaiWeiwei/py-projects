@@ -1,11 +1,13 @@
-from flask import jsonify, Blueprint
+from flask import jsonify,request
 
+from . import web
 from controller import Book
 from helper import is_isbn_or_key
 
-web = Blueprint('web', __name__)
-@web.route('/book/search/<q>/<page>')
-def search(q, page):
+
+@web.route('/book/search')
+def search():
+	q = request.args.get('q')
 	isbn_or_key = is_isbn_or_key(q)
 	if isbn_or_key == 'isbn':
 		result = Book.search_by_isbn(q)
