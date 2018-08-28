@@ -17,8 +17,8 @@ def search():
 		if isbn_or_key == 'isbn':
 			result = Book.search_by_isbn(q)
 		else:
-			result = Book.search_by_keyword(q)
+			result = Book.search_by_keyword(q, page)
 		return jsonify(result)
 		# return json.dumps(result),200,{'constent-type':'application/json'}
 	else:
-		return jsonify({"msg":"参数校验失败"})
+		return jsonify(form.errors)
