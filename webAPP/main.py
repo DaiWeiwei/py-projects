@@ -5,6 +5,6 @@ app = create_app()
 
 
 if __name__ == '__main__':
-	app.run(debug=True,port=5000)
+	app.run(host=app.config['HOST'] , port=app.config['PORT'] , debug=app.config['DEBUG'],threaded=False)
 
 
